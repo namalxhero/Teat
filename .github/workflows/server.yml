@@ -1,0 +1,35 @@
+name: Run Live Server
+
+on:
+  workflow_dispatch: # Manual run button from GitHub Actions tab
+
+jobs:
+  run-server:
+  runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Start Node Server in Background
+        run: npm start &
+
+      - name: Expose Server using Ngrok (Free Tunnel)
+        run: |
+          npm install -g localtunnel
+          lt --port 3000 &
+          sleep 5 # Wait for tunnel to generate
+          
+      - name: Keep Server Alive
+        run: |
+          echo "Server is running! Press cancel in GitHub Actions to stop."
+          sleep 21600 # Runs up to 6 hours max per action limit
+
