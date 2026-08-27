@@ -1,0 +1,13 @@
+{
+  "name": "github-actions-server",
+  "version": "1.0.0",
+  "description": "Run server on github actions",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}
+
