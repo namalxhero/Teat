@@ -24,11 +24,4 @@ jobs:
 
       - name: Expose Server using Tunnel
         run: |
-          npm install -g localtunnel
-          lt --port 3000 &
-          sleep 5
-          
-      - name: Keep Server Alive
-        run: |
-          echo "Server is running!"
-          sleep 21600
+          npx localtunnel --port 3000
